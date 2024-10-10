@@ -24,7 +24,7 @@ export function IssuePage() {
   // Fetch the array of issues (Read operation)
   const fetchIssues = async () => {
     try {
-      const response = await axios.get(`${BASE_URL}/read`);
+      const response = await axios.get(`${BASE_URL}`);
       setIssues(response.data); // Assume the response is an array of issues
     } catch (error) {
       console.error('Error fetching issues:', error);

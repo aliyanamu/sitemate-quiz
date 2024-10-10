@@ -17,12 +17,13 @@ const getIssues = () => {
 
 const getIssue = async (id) => {
   const data = await readDataFromFile();
-  return data.find(obj => obj.id === id);
+  return data.find(obj => parseInt(obj.id) === id);
 };
 
 const updateIssue = async (id, updatedData) => {
+  console.log(id, updatedData)
   const data = await readDataFromFile();
-  const index = data.findIndex(obj => obj.id === id);
+  const index = data.findIndex(obj => parseInt(obj.id) === id);
 
   if (index !== -1) {
     data[index] = { ...data[index], ...updatedData };
@@ -35,8 +36,8 @@ const updateIssue = async (id, updatedData) => {
 
 const deleteIssue = async (id) => {
   const data = await readDataFromFile();
-  const deletedData = data.find(obj => obj.id === id);
-  const newData = data.filter(obj => obj.id !== id);
+  const deletedData = data.find(obj => parseInt(obj.id) === id);
+  const newData = data.filter(obj => parseInt(obj.id) !== id);
 
   if (newData.length !== data.length) {
     await writeDataToFile(newData);
